@@ -238,6 +238,12 @@ compress_html:
     envs: development
 
 
+# Collections
+collections:
+  slides:
+    output: true
+    permalink: /:collection/:path/
+
 # Defaults
 defaults:
   # _posts
@@ -246,8 +252,14 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
