@@ -1,8 +1,8 @@
 ---
-layout: single
 title: Docker for Efficent Node.js Development
 date: 2017-12-10 13:35:55 +0200
 categories: tech
+teaser: /assets/images/docker-cover.png
 ---
 
 

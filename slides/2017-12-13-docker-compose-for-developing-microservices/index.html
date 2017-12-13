@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html class="sl-root decks export offline loaded">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Docker Compose for Developing Microservices: Slides</title>
+  <meta name="description" content="Slides">
+
+  <link rel="stylesheet" type="text/css" href="../lib/offline-v2.css">
+
+
+
+</head>
+<body class="reveal-viewport theme-font-montserrat theme-color-silver-green">
+  <div class="reveal">
+    <div class="slides">
+      <section data-id="85747850fe47a96630248645b1f81c5e"><div class="sl-block" data-block-type="text" style="width: 806px; left: 78px; top: 298px; height: auto;" data-block-id="3fbe5f0399bf50ffaf3510306cd75739"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11;">
+        <h1>Docker Compose</h1>
+
+        <p><span style="font-size:0.7em">for</span></p>
+
+        <p>Developing Microservices</p>
+      </div></div>
+      <div class="sl-block" data-block-type="image" data-block-id="9d815e4c3b1fca1774ba67d15037330e" style="min-width: 30px; min-height: 30px; width: 214px; height: 211px; left: 373px; top: 85px;"><div class="sl-block-content" style="z-index: 12;"><img data-natural-width="700" data-natural-height="689" style="" data-lazy-loaded="" data-src="assets/fa4a4f606d573e1d6e2b3f251b13c5dc.png"></div></div>
+      <div class="sl-block" data-block-type="text" style="width: 332px; left: 258px; top: 561px; height: auto;" data-block-id="fdfb42edd45c252e2cd548373280b1aa"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 13; text-align: left;">
+        <p><span style="font-size:0.7em">Can Kutlu Kınay<br>
+          Software Engineer @ <a href="https://unumotors.com" target="_blank">unu GmbH</a></span></p>
+        </div></div>
+        <div class="sl-block" data-block-type="image" data-block-id="dcf94c17ae7c157987c66a6bfade0fce" style="min-width: 30px; min-height: 30px; width: 98px; height: 98px; left: 141px; top: 551px;"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="188" data-natural-height="188" data-lazy-loaded="" data-src="assets/a948819f61384b421a9299a8671ac065.png"></div></div>
+        <div class="sl-block" data-block-type="line" data-block-id="d417cb9619d39b1000b63be099e4e0a6" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 78px; top: 534px;"><div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="802" data-line-y2="200" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="802" height="1" viewbox="0 200 802 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="200" x2="802" y2="200"></line><line stroke="#000000" stroke-width="2" x1="0" y1="200" x2="802" y2="200"></line></svg></div></div>
+        <div class="sl-block" data-block-type="shape" data-block-id="aacd503c9105c46767aebf6c620cb4d0" style="min-width: 4px; min-height: 4px; width: 29px; height: 23px; left: 612px; top: 611px;"><div class="sl-block-content" data-shape-type="symbol-twitter" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="true" style="z-index: 16;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 3 32 26"><g class="shape-element" fill="rgb(0, 0, 0)"><path d="M32 6.076c-1.177 0.522-2.443 0.875-3.771 1.034 1.355-0.813 2.396-2.099 2.887-3.632-1.269 0.752-2.674 1.299-4.169 1.593-1.198-1.276-2.904-2.073-4.792-2.073-3.626 0-6.565 2.939-6.565 6.565 0 0.515 0.058 1.016 0.17 1.496-5.456-0.274-10.294-2.888-13.532-6.86-0.565 0.97-0.889 2.097-0.889 3.301 0 2.278 1.159 4.287 2.921 5.465-1.076-0.034-2.088-0.329-2.974-0.821-0.001 0.027-0.001 0.055-0.001 0.083 0 3.181 2.263 5.834 5.266 6.437-0.551 0.15-1.131 0.23-1.73 0.23-0.423 0-0.834-0.041-1.235-0.118 0.835 2.608 3.26 4.506 6.133 4.559-2.247 1.761-5.078 2.81-8.154 2.81-0.53 0-1.052-0.031-1.566-0.092 2.905 1.863 6.356 2.95 10.064 2.95 12.076 0 18.679-10.004 18.679-18.68 0-0.285-0.006-0.568-0.019-0.849 1.283-0.926 2.396-2.082 3.276-3.398z"></path></g></svg></div></div>
+        <div class="sl-block" data-block-type="text" data-block-id="277d3dff81b0d426cfc5ecff80bd85b3" style="height: auto; min-width: 30px; min-height: 30px; width: 109px; left: 651px; top: 603px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17;" dir="ui"><p style="text-align: left;">cakuki</p></div></div>
+        <div class="sl-block" data-block-type="text" data-block-id="0f7916de6a19de29d3f35ac8b370f08d" style="height: auto; min-width: 30px; min-height: 30px; width: 189px; left: 651px; top: 564px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18;">
+          <p style="text-align: left;">ckk.im</p>
+        </div></div>
+        <div class="sl-block" data-block-type="shape" data-block-id="01968e36da9c797f69bcb5646e70c2eb" style="min-width: 4px; min-height: 4px; width: 28px; height: 28px; left: 613px; top: 571px;"><div class="sl-block-content" data-shape-type="symbol-globe" data-shape-fill-color="#000000" data-shape-stretch="true" style="z-index: 19;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 2 30 30"><g class="shape-element" fill="#000000"><path d="M15 2c-8.284 0-15 6.716-15 15s6.716 15 15 15c8.284 0 15-6.716 15-15s-6.716-15-15-15zM23.487 22c0.268-1.264 0.437-2.606 0.492-4h3.983c-0.104 1.381-0.426 2.722-0.959 4h-3.516zM6.513 12c-0.268 1.264-0.437 2.606-0.492 4h-3.983c0.104-1.381 0.426-2.722 0.959-4h3.516zM21.439 12c0.3 1.28 0.481 2.62 0.54 4h-5.979v-4h5.439zM16 10v-5.854c0.456 0.133 0.908 0.355 1.351 0.668 0.831 0.586 1.625 1.488 2.298 2.609 0.465 0.775 0.867 1.638 1.203 2.578h-4.852zM10.351 7.422c0.673-1.121 1.467-2.023 2.298-2.609 0.443-0.313 0.895-0.535 1.351-0.668v5.854h-4.852c0.336-0.94 0.738-1.803 1.203-2.578zM14 12v4h-5.979c0.059-1.38 0.24-2.72 0.54-4h5.439zM2.997 22c-0.533-1.278-0.854-2.619-0.959-4h3.983c0.055 1.394 0.224 2.736 0.492 4h-3.516zM8.021 18h5.979v4h-5.439c-0.3-1.28-0.481-2.62-0.54-4zM14 24v5.854c-0.456-0.133-0.908-0.355-1.351-0.668-0.831-0.586-1.625-1.488-2.298-2.609-0.465-0.775-0.867-1.638-1.203-2.578h4.852zM19.649 26.578c-0.673 1.121-1.467 2.023-2.298 2.609-0.443 0.312-0.895 0.535-1.351 0.668v-5.854h4.852c-0.336 0.94-0.738 1.802-1.203 2.578zM16 22v-4h5.979c-0.059 1.38-0.24 2.72-0.54 4h-5.439zM23.98 16c-0.055-1.394-0.224-2.736-0.492-4h3.516c0.533 1.278 0.855 2.619 0.959 4h-3.983zM25.958 10h-2.997c-0.582-1.836-1.387-3.447-2.354-4.732 1.329 0.636 2.533 1.488 3.585 2.54 0.671 0.671 1.261 1.404 1.766 2.192zM5.808 7.808c1.052-1.052 2.256-1.904 3.585-2.54-0.967 1.285-1.771 2.896-2.354 4.732h-2.997c0.504-0.788 1.094-1.521 1.766-2.192zM4.042 24h2.997c0.583 1.836 1.387 3.447 2.354 4.732-1.329-0.636-2.533-1.488-3.585-2.54-0.671-0.671-1.261-1.404-1.766-2.192zM24.192 26.192c-1.052 1.052-2.256 1.904-3.585 2.54 0.967-1.285 1.771-2.896 2.354-4.732h2.997c-0.504 0.788-1.094 1.521-1.766 2.192z"></path></g></svg></div></div></section><section data-id="456b0a0defd97032112d547c4580fd48" data-background-color="#000000"><div class="sl-block" data-block-type="text" data-block-id="1ada08dc1a9d70592c99add38341a3b3" style="height: auto; min-width: 30px; min-height: 30px; width: 900px; left: 27px; top: 39px;">
+          <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; color: rgb(0, 255, 0); text-align: left;">
+            <ul style="list-style-type: none">
+              <li class="fragment" data-fragment-index="0">$&gt; docker run --name db -p 27017:27017 -d mongo:3.6.0</li>
+              <li class="fragment" data-fragment-index="1">$&gt; docker run --name api -d \</li>
+              <li class="fragment" data-fragment-index="2">                          --link db \</li>
+              <li class="fragment" data-fragment-index="3">                          -p 3000:3000 \</li>
+              <li class="fragment" data-fragment-index="4">                          api:latest npm start</li>
+            </ul>
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <ul style="list-style-type: none">
+              <li class="fragment" data-fragment-index="6">$&gt; for service in services/*; do</li>
+              <li class="fragment" data-fragment-index="7">          docker run --name ${service}-service</li>
+              <li class="fragment" data-fragment-index="8">                               --link db \</li>
+              <li class="fragment" data-fragment-index="9">                                --env CUSTOM_SETTING=? \</li>
+              <li class="fragment" data-fragment-index="10">                                --port ?? ...</li>
+            </ul>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 480px; height: 700px; left: 480px; top: 0px;" data-block-id="2d72b74388944f3e444d868152201ca7">
+          <div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgb(166, 28, 0)" data-shape-stretch="true" style="z-index: 12;" data-fragment-index="10">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 480 700"><rect width="480" height="700" class="shape-element" fill="rgb(166, 28, 0)"></rect></svg>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 300px; height: 300px; left: 570px; top: 91px;" data-block-id="a36c9706f2a766651948d48533c4339e">
+          <div class="sl-block-content fragment" data-shape-type="symbol-wondering" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 13;" data-fragment-index="10">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 32 32"><g class="shape-element" fill="rgb(255, 255, 255)"><path d="M16 32c8.837 0 16-7.163 16-16s-7.163-16-16-16-16 7.163-16 16 7.163 16 16 16zM16 3c7.18 0 13 5.82 13 13s-5.82 13-13 13-13-5.82-13-13 5.82-13 13-13zM23.304 18.801l0.703 2.399-13.656 4-0.703-2.399zM8 10c0-1.105 0.895-2 2-2s2 0.895 2 2c0 1.105-0.895 2-2 2-1.105 0-2-0.895-2-2zM20 10c0-1.105 0.895-2 2-2s2 0.895 2 2c0 1.105-0.895 2-2 2-1.105 0-2-0.895-2-2z"></path></g></svg>
+          </div>
+        </div>
+        <div class="sl-block" data-block-type="text" data-block-id="25404ca0b80fa8a1b93c7246a460e92f" style="height: auto; min-width: 30px; min-height: 30px; width: 437px; left: 40px; top: 331px;">
+          <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; color: rgb(255, 255, 255);" data-fragment-index="5">
+            <h2 style="text-align: left;">Microservices</h2>
+          </div>
+        </div></section><section data-id="c4b51ff7dcc6ecb650d2b6f6b76b8616" data-background-image="assets/fa4a4f606d573e1d6e2b3f251b13c5dc.png" data-background-size="contain" data-background-position="50% 50%"><div class="sl-block" data-block-type="text" style="width: 514px; left: 29px; top: 9px; height: auto;" data-block-id="99b2a6e4704e054cc5fc4480c9676ad3">
+          <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 12;">
+            <h2>
+              <span style="font-size:51.29999923706055px">Enter</span><br>
+              Docker<br>
+              Compose</h2>
+            </div>
+          </div>
+          <div class="sl-block" data-block-type="text" data-block-id="0717d4756dba6471c7af5bcc31e98ef4" style="height: auto; min-width: 30px; min-height: 30px; width: 451px; left: 29px; top: 300px;">
+            <div class="sl-block-style" style="z-index: 13; opacity: 0.9;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; background-color: rgb(0, 0, 0); text-align: center; color: rgb(255, 255, 255); line-height: 2.6; letter-spacing: 0.19999999999999996em;" data-fragment-index="0" data-has-line-height="" data-has-letter-spacing="">
+              <p>Defines whole stack</p>
+            </div></div>
+          </div>
+          <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 451px; left: 29px; top: 400px;" data-block-id="29ad78ea862286770b95bb3b2c0a85ab">
+            <div class="sl-block-style" style="z-index: 14; opacity: 0.9;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; background-color: rgb(0, 0, 0); text-align: center; color: rgb(255, 255, 255); line-height: 2.6; letter-spacing: 0.19999999999999996em;" data-fragment-index="1" data-has-line-height="" data-has-letter-spacing="">
+              <p>Single command</p>
+            </div></div>
+          </div>
+          <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 451px; left: 29px; top: 500px;" data-block-id="95fa6ccd46369212fb5fadd68d9db7d8">
+            <div class="sl-block-style" style="z-index: 15; opacity: 0.9;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; background-color: rgb(0, 0, 0); text-align: center; color: rgb(255, 255, 255); line-height: 2.6; letter-spacing: 0.19999999999999996em;" data-fragment-index="2" data-has-line-height="" data-has-letter-spacing="">
+              <p>In isolated networks</p>
+            </div></div>
+          </div>
+          <div class="sl-block" data-block-type="shape" style="width: 480px; height: 700px; left: 480px; top: 0px;" data-block-id="50ce4eded6e0552c02cc15290457f10f"><div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgb(106, 168, 79)" data-shape-stretch="true" style="z-index: 10;" data-fragment-index="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 480 700"><rect width="480" height="700" class="shape-element" fill="rgb(106, 168, 79)"></rect></svg></div></div>
+          <div class="sl-block" data-block-type="shape" style="width: 300px; height: 300px; left: 570px; top: 91px;" data-block-id="02ebc1404dfdddecda88b7b65b6cd1ce"><div class="sl-block-content fragment" data-shape-type="symbol-happy" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 11;" data-fragment-index="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 32 32"><g class="shape-element" fill="rgb(255, 255, 255)"><path d="M16 32c8.837 0 16-7.163 16-16s-7.163-16-16-16-16 7.163-16 16 7.163 16 16 16zM16 3c7.18 0 13 5.82 13 13s-5.82 13-13 13-13-5.82-13-13 5.82-13 13-13zM16 18.711c3.623 0 7.070-0.963 10-2.654-0.455 5.576-4.785 9.942-10 9.942-5.215 0-9.544-4.371-10-9.947 2.93 1.691 6.377 2.658 10 2.658zM8 11c0-1.657 0.895-3 2-3s2 1.343 2 3c0 1.657-0.895 3-2 3-1.105 0-2-1.343-2-3zM20 11c0-1.657 0.895-3 2-3s2 1.343 2 3c0 1.657-0.895 3-2 3-1.105 0-2-1.343-2-3z"></path></g></svg></div></div></section><section data-id="7a8c68d58469db02eb9e6ddf3c21b5b1"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 29px; height: auto;" data-block-id="12e4a1b8a0bb01454e9a69a60ea6c792">
+            <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 17;" dir="ui">
+              <h2>How does it work?</h2>
+            </div>
+          </div>
+          <div class="sl-block" data-block-type="text" data-block-id="0563a573a630d73067757cb177661ddd" style="height: auto; min-width: 30px; min-height: 30px; width: 240px; left: 80px; top: 151px;">
+            <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18;" data-fragment-index="0">
+              <p>Define images</p>
+            </div>
+          </div>
+          <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 243px; left: 359px; top: 151px;" data-block-id="6dc5b5a14a4d1f3975bf274a9e9bbefc">
+            <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19;" data-fragment-index="1">
+              <p>Define stack</p>
+            </div>
+          </div>
+          <div class="sl-block" data-block-type="text" data-block-id="abe94d9633d15ae5eea63496ba520ed4" style="height: auto; min-width: 30px; min-height: 30px; width: 186px; left: 109px; top: 349px;">
+            <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; font-size: 50%;" data-fragment-index="0">
+              <p>./api/Dockerfile</p>
+            </div>
+          </div>
+          <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 186px; left: 388px; top: 201px;" data-block-id="f5355a89dd8e736afc54616cbe65218c">
+            <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; font-size: 50%;" data-fragment-index="1">
+              <p>docker-compose.yml</p>
+            </div>
+          </div>
+          <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 243px; left: 636px; top: 151px;" data-block-id="ba7846446f434e2a8a12e75868489d93">
+            <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 21;" data-fragment-index="2">
+              <p>Up!</p>
+            </div>
+          </div>
+          <div class="sl-block" data-block-type="shape" data-block-id="3a0154483d8432eab0930d716f3513a1" style="min-width: 4px; min-height: 4px; width: 240px; height: 421px; left: 80px; top: 140px;">
+            <div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 11;" data-shape-stroke-color="#000000" data-shape-stroke-width="1" data-fragment-index="0">
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 240 421"><defs><clippath id="shape-mask-1-1513177930317"><rect width="240" height="421"></rect></clippath></defs><rect width="240" height="421" clip-path="url(#shape-mask-1-1513177930317)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#000000" stroke-width="2"></rect></svg>
+            </div>
+          </div>
+          <div class="sl-block" data-block-type="code" data-block-id="4c0315376e8b6a520e3c736e7ab39339" style="min-width: 30px; min-height: 30px; width: 240px; height: 185px; left: 80px; top: 375px;">
+            <div class="sl-block-content fragment" style="z-index: 15;" data-fragment-index="0">
+              <pre class="dockerfile"><code>FROM node:9.2
+
+COPY package*.json ./
+RUN npm install
+
+COPY index.js
+
+CMD ["npm", "start"]</code></pre>
+              </div>
+            </div>
+            <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 240px; height: 421px; left: 358px; top: 140px;" data-block-id="f4f3a6cdd0b413701901c164a3466913">
+              <div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 13;" data-shape-stroke-color="#000000" data-shape-stroke-width="1" data-fragment-index="1">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 240 421"><defs><clippath id="shape-mask-2-1513177930326"><rect width="240" height="421"></rect></clippath></defs><rect width="240" height="421" clip-path="url(#shape-mask-2-1513177930326)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#000000" stroke-width="2"></rect></svg>
+              </div>
+            </div>
+            <div class="sl-block" data-block-type="code" data-block-id="284fdef4671cce1d1b25c9188f0527c1" style="min-width: 30px; min-height: 30px; width: 240px; height: 329px; left: 358px; top: 231px;">
+              <div class="sl-block-content fragment" style="z-index: 16;" data-fragment-index="1">
+                <pre class="yaml"><code>version: '3'
+services:
+  web:
+    image: nginx:1.13.7
+    volumes:
+    - ./web:/usr/share/nginx/html
+    ports:
+    - "8080:80"
+  api:
+    build: ./api/
+    depends_on:
+    - db
+    ports:
+    - "3000:3000"
+  db:
+    image: mongo:3.6.0
+                </code></pre>
+              </div>
+            </div>
+            <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 240px; height: 421px; left: 640px; top: 140px;" data-block-id="8b96d393121420e779c0746228294ae8">
+              <div class="sl-block-content fragment" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 10;" data-shape-stroke-color="#000000" data-shape-stroke-width="1" data-fragment-index="2">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 240 421"><defs><clippath id="shape-mask-3-1513177930332"><rect width="240" height="421"></rect></clippath></defs><rect width="240" height="421" clip-path="url(#shape-mask-3-1513177930332)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#000000" stroke-width="2"></rect></svg>
+              </div>
+            </div>
+            <div class="sl-block" data-block-type="code" data-block-id="81467bc0d1f8ed0fa34f52875892c466" style="min-width: 30px; min-height: 30px; width: 240px; height: 345px; left: 640px; top: 216px;">
+              <div class="sl-block-content fragment" style="z-index: 12; font-size: 80%;" data-fragment-index="2">
+                <pre class="dockerfile"><code>$&gt; docker-compose up
+
+Creating network "example_default"
+Pulling db (mongo:3.6.0)...
+3.6.0: Pulling from library/mongo
+Building api
+Step 1/5 : FROM node:9.2
+9.2: Pulling from library/node
+Step 2/5 : COPY package.json ./
+Step 3/5 : RUN npm install
+Step 4/5 : COPY index.js ./
+Step 5/5 : CMD ["npm", "start"]
+Successfully built
+Successfully tagged example_api:latest
+Creating example_db_1 ...
+Creating example_db_1 ... done
+Creating example_api_1 ...
+Creating example_api_1 ... done
+Creating example_web_1 ...
+Creating example_web_1 ... done
+
+api_1 | Example app listening on port 3000!</code></pre>
+                </div>
+              </div></section><section data-id="1d9c855782654f75aede2f04320125c9"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 29px; height: auto;" data-block-id="2ef9b9b552c2ccf92d424569726a2360">
+                <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;" dir="ui">
+                  <h2>Basic Stack</h2>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+              <div class="sl-block" data-block-type="code" data-block-id="7e59455b5c3e91bb610584d9adcbbaa5" style="min-width: 30px; min-height: 30px; width: 361px; height: 490px; left: 80px; top: 142px;"><div class="sl-block-content" style="z-index: 12;"><pre class="yaml"><code>version: '3'
+
+services:
+#---------------------------------
+web:
+  image: nginx:1.13.7
+  volumes:
+   - ./web:/usr/share/nginx/html
+  ports:
+   - "8080:80"
+#---------------------------------
+api:
+  image: api:latest
+  build: ./api/
+  depends_on:
+   - db
+  ports:
+   - "3000:3000"
+#---------------------------------
+db:
+  image: mongo:3.6.0</code></pre></div></div>
+                <div class="sl-block" data-block-type="text" data-block-id="8f2b4f7eaa39576cea85997d8b81899d" style="height: auto; min-width: 30px; min-height: 30px; width: 364px; left: 77px; top: 103px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+                  <p><span style="font-size:0.7em">foobar/docker-compose.yml</span></p>
+                </div></div>
+                <div class="sl-block" data-block-type="text" data-block-id="dff156f2611159973f58a70e2f66155f" style="height: auto; min-width: 30px; min-height: 30px; width: 358px; left: 511px; top: 237px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; line-height: 1.56; background-color: rgb(204, 204, 204); border-style: solid; border-width: 1px;" data-has-line-height="">
+                  <p>foobar_web_1<br>
+                    (nginx:1.13.7)</p>
+                  </div></div>
+                  <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 358px; left: 511px; top: 382px;" data-block-id="3c32d938c8d51d3c5ad2b97e1e9c9f77"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; line-height: 1.56; background-color: rgb(204, 204, 204); border-style: solid; border-width: 1px;" data-has-line-height="">
+                    <p>foobar_api_1<br>
+                      (api:latest)</p>
+                    </div></div>
+                    <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 358px; left: 511px; top: 509px;" data-block-id="819716d98cb131f6f8c7795e105763f4"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; line-height: 1.56; background-color: rgb(204, 204, 204); border-style: solid; border-width: 1px;" data-has-line-height="">
+                      <p>foobar_db_1<br>
+                        (mongo:3.6.0)</p>
+                      </div></div>
+                      <div class="sl-block" data-block-type="line" data-block-id="785a16fd5183dbb1c9ad6c58fa255b2d" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 441px; top: 288px;"><div class="sl-block-content" data-line-x1="61" data-line-y1="38" data-line-x2="161" data-line-y2="38" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 17;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="100" height="1" viewbox="61 38 100 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="61" y1="38" x2="159" y2="38"></line><line stroke="#000000" stroke-width="2" x1="61" y1="38" x2="159" y2="38"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(159,38) rotate(90)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+                      <div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 441px; top: 433px;" data-block-id="f4b36d6775ae0bee4df7f738cde5c24f"><div class="sl-block-content" data-line-x1="46" data-line-y1="168" data-line-x2="146" data-line-y2="168" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 18;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="100" height="1" viewbox="46 168 100 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="46" y1="168" x2="144" y2="168"></line><line stroke="#000000" stroke-width="2" x1="46" y1="168" x2="144" y2="168"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(144,168) rotate(90)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+                      <div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 441px; top: 560px;" data-block-id="31d777edde3c7be3719f62fdc9137373"><div class="sl-block-content" data-line-x1="61" data-line-y1="38" data-line-x2="161" data-line-y2="38" data-line-color="#000000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 19;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="100" height="1" viewbox="61 38 100 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="61" y1="38" x2="159" y2="38"></line><line stroke="#000000" stroke-width="2" x1="61" y1="38" x2="159" y2="38"></line><path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="2" transform="translate(159,38) rotate(90)" d="M 6 6 L 0 0 L -6 6"></path></svg></div></div>
+                      <div class="sl-block" data-block-type="shape" data-block-id="46b225f1338a1c1cea0f8f579b9176de" style="min-width: 4px; min-height: 4px; width: 380px; height: 492px; left: 500px; top: 140px;"><div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="true" style="z-index: 10;" data-shape-stroke-color="#000000" data-shape-stroke-width="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 380 492"><defs><clippath id="shape-mask-4-1513177931478"><rect width="380" height="492"></rect></clippath></defs><rect width="380" height="492" clip-path="url(#shape-mask-4-1513177931478)" class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#000000" stroke-width="2"></rect></svg></div></div>
+                      <div class="sl-block" data-block-type="text" data-block-id="d141de92ac273e1bec34924be8ba81a8" style="height: auto; min-width: 30px; min-height: 30px; width: 372px; left: 504px; top: 142px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20;">
+                        <p>foobar_network</p>
+                      </div></div>
+                      <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 358px; left: 511px; top: 198px;" data-block-id="97bbb833cf1c5d7da28f87778836435b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 21;">
+                        <p>web</p>
+                      </div></div>
+                      <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 358px; left: 511px; top: 343px;" data-block-id="3514974ef9544a0abf0abcf19e2e5e41"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 23;">
+                        <p>api</p>
+                      </div></div></section><section data-id="f6193c091a01bdc1febfb6cbe6763670"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 29px; height: auto;" data-block-id="698c6dffa5ed09b51576d75c9b6f0cd5">
+                        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;" dir="ui">
+                          <h2>What about more services?</h2>
+                        </div>
+                      </div>
+
+                      <div class="sl-block" data-block-type="code" data-block-id="7931c655058804b9fc2497ee6e0babd3" style="min-width: 30px; min-height: 30px; width: 240px; height: 490px; left: 80px; top: 140px;"><div class="sl-block-content" style="z-index: 12;"><pre class="dockerfile"><code>services
+├── cart
+│   ├── Dockerfile
+│   ├── index.js
+│   └── package.json
+├── checkout
+│   ├── Dockerfile
+│   ├── index.js
+│   └── package.json
+├── payment
+│   ├── Dockerfile
+│   ├── index.js
+│   └── package.json
+├── stock
+│   ├── Dockerfile
+│   ├── index.js
+│   └── package.json
+└── web
+└── index.html
+                      </code></pre></div></div>
+                      <div class="sl-block" data-block-type="code" data-block-id="4846c220786e08ea1e180c06f7213096" style="min-width: 30px; min-height: 30px; width: 480px; height: 490px; left: 400px; top: 140px;"><div class="sl-block-content" style="z-index: 13; font-size: 90%;"><pre class="dockerfile"><code>version: '3.0'
+services:
+  cart-service:
+    build: services/cart
+    depends_on:
+     - db
+    ports:
+     - 3000:3000/tcp
+  checkout-service:
+    build: services/checkout
+    ...
+  payment-service:
+    build: services/payment
+    ...
+  stock-service:
+    build: services/stock
+    ...
+  web:
+    image: nginx:1.13.7
+    ports:
+     - 8080:80/tcp
+    volumes:
+     - ./services/web:/usr/share/nginx/html:rw
+  db:
+    image: mongo:3.6.0
+                      </code></pre></div></div>
+                      <div class="sl-block" data-block-type="image" data-block-id="e6cf72fee7976268d0592a48474c9bc8" style="min-width: 30px; min-height: 30px; width: 738px; height: 550px; left: 111px; top: 75px;"><div class="sl-block-content fragment" style="z-index: 14;" data-fragment-index="0"><img style="" data-natural-width="738" data-natural-height="550" data-lazy-loaded="" data-src="assets/bb37cfe045b2e10f39e14139ce3c0b87.png"></div></div></section><section data-id="9501621539d8aa80b67b20ce50785521"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 29px; height: auto;" data-block-id="5f620bc58968f22323cca9c8b88b32ad">
+                        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;" dir="ui">
+                          <h2>Even more services?</h2>
+                        </div>
+                      </div>
+
+                      <div class="sl-block" data-block-type="image" style="width: 272px; height: 506px; left: 35px; top: 194px;" data-block-id="3034f54c4054217791e2a8ace6b7b508"><div class="sl-block-content fragment" style="z-index: 12;" data-fragment-index="0"><img style="" data-natural-width="727" data-natural-height="1350" data-lazy-loaded="" data-src="assets/0ab7d86a16ecae28963e092974e98509.png"></div></div>
+                      <div class="sl-block" data-block-type="text" style="height: auto; width: 272px; left: 35px; top: 132px;" data-block-id="5e99ce00e021f0c63d3fc35bbf69b3b2"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; font-size: 75%;" data-fragment-index="0">
+                        <p>Growing<br>
+                          docker-compose.yml</p>
+                        </div></div>
+                        <div class="sl-block" data-block-type="code" style="width: 548px; height: 259px; left: 359px; top: 194px;" data-block-id="39cd87098f3e96f2074b5d2a1037b9eb"><div class="sl-block-content fragment" style="z-index: 14;" data-fragment-index="1"><pre class="yaml"><code>version: '2.1'
+services:
+  web:
+    extends:
+      file: common-services.yml
+      service: webapp
+    environment:
+     - DEBUG=1
+    cpu_shares: 5
+
+  important_web:
+    extends: web
+    cpu_shares: 10</code></pre></div></div>
+                          <div class="sl-block" data-block-type="text" style="height: auto; width: 376px; left: 445px; top: 160px;" data-block-id="fe9392b4677b899a2677f3b09faf56a6"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; font-size: 75%;" data-fragment-index="1">
+                            <p>Extending</p>
+                          </div></div>
+                          <div class="sl-block" data-block-type="code" style="width: 548px; height: 116px; left: 359px; top: 526px;" data-block-id="286434a974758af7e89258ea4ecab1d0"><div class="sl-block-content fragment" style="z-index: 16;" data-fragment-index="2"><pre class="bash"><code>$&gt; docker-compose -f services/checkout/service.yml \
+                            -f services/order/service.yml \
+                            -f services/payment/service.yml \
+                            ... \
+                            up --detach
+
+                          </code></pre></div></div>
+                          <div class="sl-block" data-block-type="text" style="height: auto; width: 376px; left: 445px; top: 490px;" data-block-id="58ee94ab23c0d21de73681c97ec0c17f"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; font-size: 75%;" data-fragment-index="2">
+                            <p>Or multiple YAML files</p>
+                          </div></div></section><section data-id="259e0cbf4462086674342bc01286063b"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 29px; height: auto;" data-block-id="e4a8c2cc9bbfe03ee1ce8cb7a5542f7d">
+                            <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;" dir="ui">
+                              <h2>Multiple YAML files</h2>
+                            </div>
+                          </div>
+
+                          <div class="sl-block" data-block-type="code" style="width: 640px; height: 109px; left: 160px; top: 128px;" data-block-id="69216e8956dd554c1d722447cc1f6110"><div class="sl-block-content" style="z-index: 12;"><pre class="bash"><code>$&gt; docker-compose -f services/checkout/service.yml \
+                  -f services/order/service.yml \
+                  -f services/payment/service.yml \
+                  ... \
+                  up --detach
+                          </code></pre></div></div>
+                          <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 304px; height: auto;" data-block-id="1f45a5a4d3c9042a84c925ad10b23830">
+                            <div class="sl-block-content fragment" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 13;" dir="ui" data-fragment-index="0">
+                              <h2>Template</h2>
+                            </div>
+                          </div>
+                          <div class="sl-block" data-block-type="code" data-block-id="f47853bfa11651b7d01cc5d745b7e671" style="min-width: 30px; min-height: 30px; width: 413px; height: 269px; left: 77px; top: 390px;"><div class="sl-block-content fragment" style="z-index: 14;" data-fragment-index="0"><pre class="dockerfile"><code>for service in services; do;
+cat &gt;"stack/${service}.yml" &lt;&lt;EOF
+
+version: '3'
+services:
+  ${service}-service:
+    build: services/${service}
+    depends_on:
+    - db
+
+EOF
+done
+                          </code></pre></div></div>
+                          <div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 284px; height: 269px; left: 596px; top: 390px;" data-block-id="3a07df85a10a61ae839f9440ee8070ec"><div class="sl-block-content fragment" style="z-index: 15; font-size: 85%;" data-fragment-index="1"><pre class="yaml"><code>├── services
+│   ├── cart
+│   ├── checkout
+│   ├── payment
+│   ├── stock
+│   └── web
+├── stack
+│   ├── cart.yml
+│   ├── checkout.yml
+│   ├── db.yml
+│   ├── payment.yml
+│   ├── stock.yml
+│   └── web.yml
+└── docker-compose.yml
+                          </code></pre></div></div>
+                          <div class="sl-block" data-block-type="line" data-block-id="eb21759c7850948474a3534126d67e2b" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 490px; top: 525px;"><div class="sl-block-content fragment" data-line-x1="110" data-line-y1="275" data-line-x2="216" data-line-y2="275" data-line-color="#444444" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 16;" data-line-width="8px" data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="106" height="1" viewbox="110 275 106 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="110" y1="275" x2="210" y2="275"></line><line stroke="#444444" stroke-width="8" x1="110" y1="275" x2="210" y2="275"></line><path style="fill: rgba(0,0,0,0);" stroke="#444444" stroke-width="8" transform="translate(210,275) rotate(90)" d="M 18 18 L 0 0 L -18 18"></path></svg></div></div></section><section data-id="5b1225301fa2dd4f054a6e6773f9bc0a"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 29px; height: auto;" data-block-id="d0ab91e1dfc3b31f3e6177d09d54d056">
+                            <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 13;" dir="ui">
+                              <h2>Wrapping it up (literally)</h2>
+                            </div>
+                          </div>
+
+                          <div class="sl-block" data-block-type="code" data-block-id="877e4f10b056b95a8592119fa1683800" style="min-width: 30px; min-height: 30px; width: 560px; height: 146px; left: 320px; top: 210px;"><div class="sl-block-content fragment" style="z-index: 11; font-size: 127%;" data-fragment-index="2"><pre class="bash"><code>#!/bin/bash -e
+
+CONFIG_FILES=(stack/*.yml)
+
+docker-compose ${CONFIG_FILES[@]/#/-f} ${@}
+                          </code></pre></div></div>
+                          <div class="sl-block" data-block-type="code" data-block-id="bec19f50b1c3879b8c6cf9ad3f34f7da" style="min-width: 30px; min-height: 30px; width: 188px; height: 238px; left: 80px; top: 143px;"><div class="sl-block-content" style="z-index: 14; font-size: 85%;"><pre class="yaml"><code>├── services
+│   ├── cart
+│   ├── checkout
+│   ├── payment
+│   ├── stock
+│   └── web
+├── stack
+│   ├── cart.yml
+│   ├── checkout.yml
+│   ├── db.yml
+│   ├── payment.yml
+│   ├── stock.yml
+│   └── web.yml
+└── wrapper</code></pre></div></div>
+                            <div class="sl-block" data-block-type="line" data-block-id="393cbdece67af57f0480da998e7e3590" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 191px; top: 280px;"><div class="sl-block-content fragment" data-line-x1="-189" data-line-y1="18" data-line-x2="-68" data-line-y2="-70" data-line-color="#980000" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 15;" data-line-width="5px" data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="121" height="88" viewbox="-189 -70 121 88"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-188.5" y1="18.5" x2="-70.5" y2="-67.5"></line><line stroke="#980000" stroke-width="5" x1="-188.5" y1="18.5" x2="-70.5" y2="-67.5"></line><path style="fill: rgba(0,0,0,0);" stroke="#980000" stroke-width="5" transform="translate(-71,-68) rotate(53.973)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path></svg></div></div>
+                            <div class="sl-block" data-block-type="text" data-block-id="37a2870d37b3581d3ffe6cfcd741fa6e" style="height: auto; min-width: 30px; min-height: 30px; width: 560px; left: 320px; top: 160px;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16;" data-fragment-index="0">
+                              <p>./wrapper script</p>
+                            </div></div>
+                            <div class="sl-block" data-block-type="text" data-block-id="8e0901591ba22b624aa4b4f4731f388a" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 420px;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; font-size: 80%;" data-fragment-index="3">
+                              <p><span style="font-size:1.0em">Replace all docker-compose commands</span></p>
+                            </div></div>
+                            <div class="sl-block" data-block-type="code" data-block-id="52df2240bb495f4d0b6be34daca24982" style="min-width: 30px; min-height: 30px; width: 480px; height: 53px; left: 240px; top: 577px;"><div class="sl-block-content fragment" style="z-index: 18;" data-fragment-index="4"><pre class="yaml"><code>./wrapper up --build --scale api=2
+                              ./wrapper down
+                            </code></pre></div></div>
+                            <div class="sl-block" data-block-type="code" data-block-id="0fac202bd17770f70f68f4a0b25c383b" style="min-width: 30px; min-height: 30px; width: 480px; height: 100px; left: 240px; top: 468px;"><div class="sl-block-content fragment" style="z-index: 19; font-size: 384%;" data-fragment-index="3"><pre class="dockerfile"><code>./wrapper up</code></pre></div></div>
+                            <div class="sl-block" data-block-type="code" style="width: 560px; height: 146px; left: 320px; top: 210px;" data-block-id="c2a73c2f86694633852ac42fa6085ffa"><div class="sl-block-content fragment" style="z-index: 10; font-size: 118%;" data-fragment-index="1"><pre class="bash"><code>#!/bin/bash -e
+
+docker-compose -f stack/checkout.yml \
+               -f stack/order.yml \
+               ... \
+               ${@}
+                            </code></pre></div></div></section><section data-id="b7779f2f1687ff27ed007a76321fc8c5"><div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 189px; height: auto;" data-block-id="c89751bc961e75a35d615f33c4922409"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11;">
+                              <h1>Thanks!</h1>
+                            </div></div>
+                            <div class="sl-block" data-block-type="text" style="width: 806px; left: 77px; top: 286px; height: auto;" data-block-id="333b3d826c8b387b2e3d57901410b557"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 12;">
+                              <h2>Questions?</h2>
+                            </div></div>
+                            <div class="sl-block" data-block-type="text" style="width: 332px; left: 258px; top: 561px; height: auto;" data-block-id="d072d1b717cfd282ad4660672b90208f"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec metus justo. Aliquam erat volutpat." style="z-index: 13; text-align: left;">
+                              <p><span style="font-size:0.7em">Can Kutlu Kınay<br>
+                                Software Engineer @ <a href="https://unumotors.com" target="_blank">unu GmbH</a></span></p>
+                              </div></div>
+                              <div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 98px; height: 98px; left: 141px; top: 551px;" data-block-id="315bc1346e7c2079d7d1d1cc22704808"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="188" data-natural-height="188" data-lazy-loaded="" data-src="assets/a948819f61384b421a9299a8671ac065.png"></div></div>
+                              <div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 78px; top: 534px;" data-block-id="d275f4caf9f3a22f14db407b173079c1"><div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="802" data-line-y2="200" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="802" height="1" viewbox="0 200 802 1"><line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="200" x2="802" y2="200"></line><line stroke="#000000" stroke-width="2" x1="0" y1="200" x2="802" y2="200"></line></svg></div></div>
+                              <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 29px; height: 23px; left: 612px; top: 611px;" data-block-id="9941cf2d7e206e608f70808b2f4605c6"><div class="sl-block-content" data-shape-type="symbol-twitter" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="true" style="z-index: 16;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 3 32 26"><g class="shape-element" fill="rgb(0, 0, 0)"><path d="M32 6.076c-1.177 0.522-2.443 0.875-3.771 1.034 1.355-0.813 2.396-2.099 2.887-3.632-1.269 0.752-2.674 1.299-4.169 1.593-1.198-1.276-2.904-2.073-4.792-2.073-3.626 0-6.565 2.939-6.565 6.565 0 0.515 0.058 1.016 0.17 1.496-5.456-0.274-10.294-2.888-13.532-6.86-0.565 0.97-0.889 2.097-0.889 3.301 0 2.278 1.159 4.287 2.921 5.465-1.076-0.034-2.088-0.329-2.974-0.821-0.001 0.027-0.001 0.055-0.001 0.083 0 3.181 2.263 5.834 5.266 6.437-0.551 0.15-1.131 0.23-1.73 0.23-0.423 0-0.834-0.041-1.235-0.118 0.835 2.608 3.26 4.506 6.133 4.559-2.247 1.761-5.078 2.81-8.154 2.81-0.53 0-1.052-0.031-1.566-0.092 2.905 1.863 6.356 2.95 10.064 2.95 12.076 0 18.679-10.004 18.679-18.68 0-0.285-0.006-0.568-0.019-0.849 1.283-0.926 2.396-2.082 3.276-3.398z"></path></g></svg></div></div>
+                              <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 109px; left: 651px; top: 603px;" data-block-id="81b5734fd47bdb20831751d1302361e9"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17;" dir="ui"><p style="text-align: left;">cakuki</p></div></div>
+                              <div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 189px; left: 651px; top: 564px;" data-block-id="744b104dbb869667f0884e983e13609c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18;">
+                                <p style="text-align: left;">ckk.im</p>
+                              </div></div>
+                              <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 28px; height: 28px; left: 613px; top: 571px;" data-block-id="1deb14e7ee6d22b22a6d916bae0c279a"><div class="sl-block-content" data-shape-type="symbol-globe" data-shape-fill-color="#000000" data-shape-stretch="true" style="z-index: 19;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 2 30 30"><g class="shape-element" fill="#000000"><path d="M15 2c-8.284 0-15 6.716-15 15s6.716 15 15 15c8.284 0 15-6.716 15-15s-6.716-15-15-15zM23.487 22c0.268-1.264 0.437-2.606 0.492-4h3.983c-0.104 1.381-0.426 2.722-0.959 4h-3.516zM6.513 12c-0.268 1.264-0.437 2.606-0.492 4h-3.983c0.104-1.381 0.426-2.722 0.959-4h3.516zM21.439 12c0.3 1.28 0.481 2.62 0.54 4h-5.979v-4h5.439zM16 10v-5.854c0.456 0.133 0.908 0.355 1.351 0.668 0.831 0.586 1.625 1.488 2.298 2.609 0.465 0.775 0.867 1.638 1.203 2.578h-4.852zM10.351 7.422c0.673-1.121 1.467-2.023 2.298-2.609 0.443-0.313 0.895-0.535 1.351-0.668v5.854h-4.852c0.336-0.94 0.738-1.803 1.203-2.578zM14 12v4h-5.979c0.059-1.38 0.24-2.72 0.54-4h5.439zM2.997 22c-0.533-1.278-0.854-2.619-0.959-4h3.983c0.055 1.394 0.224 2.736 0.492 4h-3.516zM8.021 18h5.979v4h-5.439c-0.3-1.28-0.481-2.62-0.54-4zM14 24v5.854c-0.456-0.133-0.908-0.355-1.351-0.668-0.831-0.586-1.625-1.488-2.298-2.609-0.465-0.775-0.867-1.638-1.203-2.578h4.852zM19.649 26.578c-0.673 1.121-1.467 2.023-2.298 2.609-0.443 0.312-0.895 0.535-1.351 0.668v-5.854h4.852c-0.336 0.94-0.738 1.802-1.203 2.578zM16 22v-4h5.979c-0.059 1.38-0.24 2.72-0.54 4h-5.439zM23.98 16c-0.055-1.394-0.224-2.736-0.492-4h3.516c0.533 1.278 0.855 2.619 0.959 4h-3.983zM25.958 10h-2.997c-0.582-1.836-1.387-3.447-2.354-4.732 1.329 0.636 2.533 1.488 3.585 2.54 0.671 0.671 1.261 1.404 1.766 2.192zM5.808 7.808c1.052-1.052 2.256-1.904 3.585-2.54-0.967 1.285-1.771 2.896-2.354 4.732h-2.997c0.504-0.788 1.094-1.521 1.766-2.192zM4.042 24h2.997c0.583 1.836 1.387 3.447 2.354 4.732-1.329-0.636-2.533-1.488-3.585-2.54-0.671-0.671-1.261-1.404-1.766-2.192zM24.192 26.192c-1.052 1.052-2.256 1.904-3.585 2.54 0.967-1.285 1.771-2.896 2.354-4.732h2.997c-0.504 0.788-1.094 1.521-1.766 2.192z"></path></g></svg></div></div>
+                              <div class="sl-block" data-block-type="text" data-block-id="ee95d1452631f30234a952e447567a0f" style="height: auto; min-width: 30px; min-height: 30px; width: 802px; left: 78px; top: 430.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20;">
+                                <p><a href="https://github.com/cakuki/docker-compose-wrapper" target="_blank">https://github.com/cakuki/docker-compose-wrapper</a></p>
+                              </div></div></section>
+                            </div>
+                          </div>
+
+                          <script>
+                            var SLConfig = {"deck": {"id":1137924,"slug":"docker-compose-for-developing-microservices","title":"Docker Compose for Developing Microservices","description":"Short recap of Docker Compose with tips \u0026 tricks to use it on your microservices architecture development\n\nPrepared for lightning talk in DevOps Berlin meet up group on 13.12.2017.","width":960,"height":700,"visibility":"all","published_at":"2017-12-11T21:32:32.371Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/4cb0135126020742a8a7c8da6146d63c/thumb.jpg?1513089557","view_count":16,"user":{"id":194330,"username":"ckk","name":"Can Kutlu Kınay","description":"","thumbnail_url":"https://www.gravatar.com/avatar/0a23f74f28ac6ba8c6cf0677c466dbc9?s=140\u0026d=https%3A%2F%2Fs3.amazonaws.com%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","paid":true,"pro":false,"lite":true,"team_id":null,"settings":{"id":572509,"present_controls":true,"present_upsizing":true,"present_pointer":false,"present_notes":true}},"background_transition":"concave","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"silver-green","auto_slide_interval":0,"comments_enabled":false,"forking_enabled":false,"rolling_links":false,"center":false,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":10,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1513177940086,"font_typekit":null,"font_google":null,"notes":{}}};
+
+
+                            // Use local fonts
+                            SLConfig.fonts_url = '../lib/fonts/';
+                          </script>
+
+                          <script src="../lib/head.min.js"></script>
+                          <script src="../lib/reveal.min.js"></script>
+                          <script src="../lib/offline.js"></script>
+
+                          <!-- Initialize the presentation -->
+                          <script>
+                            Reveal.initialize({
+                              width: 960,
+                              height: 700,
+                              margin: 0.05,
+
+                              controls: true,
+                              progress: true,
+                              history: true,
+                              mouseWheel: false,
+                              showNotes: false,
+                              slideNumber: false,
+
+                              autoSlide: 0 || 0,
+                              autoSlideStoppable: true,
+
+                              center: false,
+                              loop: false,
+                              rtl: false,
+
+                              transition: "slide",
+                              backgroundTransition: "concave",
+
+                              dependencies: [
+                              { src: '../lib/reveal-plugins/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                              { src: '../lib/reveal-plugins/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                              { src: '../lib/reveal-plugins/highlight/highlight.js', async: true, callback: function() { hljs.initHighlighting(); hljs.initHighlightingOnLoad(); } },
+                              { src: '../lib/reveal-plugins/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                              ]
+                            });
+                          </script>
+
+
+
+                        </body>
+                        </html>
